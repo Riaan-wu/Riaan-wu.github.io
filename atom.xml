@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-12-01T08:41:53.502Z</updated>
+  <updated>2024-12-06T14:33:05.267Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++常见函数介绍</title>
+    <link href="http://example.com/2024/12/06/c-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"/>
+    <id>http://example.com/2024/12/06/c-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</id>
+    <published>2024-12-06T13:44:09.000Z</published>
+    <updated>2024-12-06T14:33:05.267Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、C-中常见函数"><a href="#一、C-中常见函数" class="headerlink" title="一、C++中常见函数"></a>一、C++中常见函数</h1><h2 id="1-1、构造函数"><a href="#1-1、构造函数" class="headerlink" title="1.1、构造函数"></a>1.1、构造函数</h2><p>每个类都分别定义了它的对象被初始化的方式，类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。构造函数的任务是初始化类对象的数据成员，<strong>无论何时，只要类的对象被创建，就会执行构造函数。</strong></p><h2 id="1-2、析构函数"><a href="#1-2、析构函数" class="headerlink" title="1.2、析构函数"></a>1.2、析构函数</h2><p>在类的定义时，名称与类名相同，增加一个～，一般用于释放对象所占用的资源，在对象消失时调用。<strong>如果程序员没有提供析构函数，编译器将隐式地声明一个默认析构函数</strong>（<em>需要注意的是，默认的析构函数不会定义为虚函数，具体原因在虚函数章节会介绍</em>），并在发生导致对象被删除的代码后，提供默认析构函数的定义。</p><h2 id="1-3、内联函数"><a href="#1-3、内联函数" class="headerlink" title="1.3、内联函数"></a>1.3、内联函数</h2><p>在C++中，<strong>内联函数的主要用途是节省内存空间</strong>。简单点理解，就是调用内联函数的时候，其实直接调用的是函数内容。在main()方法中，当调用fun1()函数时，控制权被转移到被调函数的定义。函数被调用的地址和函数定义的地址是不同的，这个控制转移需要时间，增加了开销。<br>当遇到内联函数时，函数的定义会被负责到调用位置。在这个情况下，没有控制转移，这节省了很多时间并减少了开销。</p><h2 id="1-4、虚函数"><a href="#1-4、虚函数" class="headerlink" title="1.4、虚函数"></a>1.4、虚函数</h2><p>虚函数是在基类中被声明为virtual，并在派生类中重新定义的成员函数，可实现成员函数的动态覆盖。（虚函数在日常中使用非常频繁，后面会专门出一篇讲解虚函数的进一步介绍）</p><h2 id="1-5、纯虚函数"><a href="#1-5、纯虚函数" class="headerlink" title="1.5、纯虚函数"></a>1.5、纯虚函数</h2><p>纯虚函数时在基类中声明的虚函数，它<strong>在基类中没有定义，但要求任何派生类都要定义自己的实现方法</strong>。在基类中实现虚函数的方法是在函数原型后加“&#x3D;0”，定义纯虚函数后，基类就不能被实例化，目的就是让派生类去重写这个纯虚函数。<br><em>为什么需要纯虚函数？</em> 因为在很多情况下，基类本身生成的对象是不合情理的。例如，动物可以作为一个基类，派生出老虎、孔雀等子类，但动物本身生成一个对象并不合理。</p><h2 id="1-6、友元函数"><a href="#1-6、友元函数" class="headerlink" title="1.6、友元函数"></a>1.6、友元函数</h2><p><strong>比如A想访问B中的private成员，那么就将A定义为B的友元函数</strong><br>在C++中，友元函数和友元类长用于需要访问类的私有成员以实现特定功能的场景。如果要声明函数为一个类的友元，需要在类定义中在该函数原型前使用关键字friend。<strong>友元不属于类成员，需要在类内定义，但是在类外实现，友元也不支持继承</strong>。</p><pre><code class="c++">#include &lt;iostream&gt;using namespace std;class A&#123;    private:        int width;        void Private_printfwidth(void) &#123;            cout &lt;&lt; &quot;private width:&quot; &lt;&lt; width &lt;&lt; endl;          &#125;    public:        A(int w) &#123;            width = w;        &#125;        friend void Pubilc_printfwidth(A &amp;a);//友元在类内声明&#125;;void Pubilc_printfwidth(A &amp;a) &#123; //在类外定义    cout &lt;&lt; &quot;pubilc width:&quot; &lt;&lt; a.width &lt;&lt; endl;  &#125;int main(void) &#123;    A test(1);    Pubilc_printfwidth(test);    return 0;&#125;</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;一、C-中常见函数&quot;&gt;&lt;a href=&quot;#一、C-中常见函数&quot; class=&quot;headerlink&quot; title=&quot;一、C++中常见函数&quot;&gt;&lt;/a&gt;一、C++中常见函数&lt;/h1&gt;&lt;h2 id=&quot;1-1、构造函数&quot;&gt;&lt;a href=&quot;#1-1、构造函数&quot; class</summary>
+      
+    
+    
+    
+    <category term="C++" scheme="http://example.com/categories/C/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>vim使用</title>
